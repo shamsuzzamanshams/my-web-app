@@ -1,11 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import { useLoaderData } from 'react-router';
-import { getStoreApp } from '../../Utility/dataBase';
+import { getStoreApp, removeApp } from '../../Utility/dataBase';
 import SingleApp from '../SingleApp/SingleApp';
+import ShowInstallApp from '../ShowInstallApp/ShowInstallApp';
+ import { ToastContainer, toast } from 'react-toastify';
 
 const Installation = () => {
 	const data = useLoaderData();
 	const [installedAppList, setInstalledAppList] = useState([]);
+	const [sort, setSort] = useState('')
+
+	const handleUninstall = (id) => {
+		removeApp(id);
+
+		
+		const updated = installedAppList.filter(app => app.id !== id);
+		setInstalledAppList(updated);
+		toast("Remove From Installed List");
+	};
 
 	useEffect(() => {
 		const storedAppIds = getStoreApp();
@@ -14,6 +26,18 @@ const Installation = () => {
 		const installedApps = data.filter(app => convertedIds.includes(app.id));
 		setInstalledAppList(installedApps);
 	}, [data]);
+
+	const handleSort = (type) => {
+		setSort(type);
+		if (type === "low-high") {
+			const sortbylowtohigh = [...installedAppList].sort((a, b) => a.downloads - b.downloads);
+			setInstalledAppList(sortbylowtohigh);
+		}
+		if (type === "high-low") {
+			const sortbyhightolow = [...installedAppList].sort((a, b) => b.downloads - a.downloads);
+			setInstalledAppList(sortbyhightolow);
+		}
+	}
 
 	return (
 		<div>
@@ -25,10 +49,10 @@ const Installation = () => {
 			<div className='flex justify-between items-center mt-10'>
 				<h3 className='font-bold'>({installedAppList.length}) Apps Found</h3>
 				<details className="dropdown">
-					<summary className="btn m-1">Sort By</summary>
+					<summary className="btn m-1">Sort By: {sort ? sort : ""}</summary>
 					<ul className="menu dropdown-content bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
-						<li><a >Low-High</a></li>
-						<li><a >High-Low</a></li>
+						<li><a onClick={() => handleSort("low-high")}>Low-High</a></li>
+						<li><a onClick={() => handleSort("high-low")}>High-Low</a></li>
 					</ul>
 				</details>
 			</div>
@@ -36,12 +60,13 @@ const Installation = () => {
 			{installedAppList.length === 0 ? (
 				<p className='text-center mt-10 text-gray-500'>No installed apps found</p>
 			) : (
-				<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-10'>
+				<div className='mt-10'>
 					{installedAppList.map(singleapp => (
-						<SingleApp key={singleapp.id} singleapp={singleapp} />
+						<ShowInstallApp key={singleapp.id} singleapp={singleapp} onUninstall={handleUninstall}></ShowInstallApp>
 					))}
 				</div>
 			)}
+			<ToastContainer></ToastContainer>
 		</div>
 	);
 };

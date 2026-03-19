@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLoaderData, useParams } from 'react-router';
 import ri from '../../assets/icon-ratings.png'
 import di from '../../assets/icon-downloads.png'
 import revi from '../../assets/icon-review.png'
 import { Bar, CartesianGrid, ComposedChart, Legend, Tooltip, XAxis, YAxis } from 'recharts';
-import { addToStoreDb } from '../../Utility/dataBase';
+import { addToStoreDb, getStoreApp } from '../../Utility/dataBase';
+import { ToastContainer, toast } from 'react-toastify';
 
 
 
@@ -17,8 +18,21 @@ const AppDetails = () => {
 
 	const { image, title, description, companyName, downloads, ratingAvg, reviews, size, ratings } = SingleApp;
 	const handleInstall = id => {
+		setIsInstalled(true);
 		addToStoreDb(id);
+		toast("Instalation Complete");
 	}
+
+	const [isInstalled, setIsInstalled] = useState(false);
+
+	useEffect(() => {
+		const storedApps = getStoreApp();
+
+		
+		const alreadyInstalled = storedApps.map(id => Number(id)).includes(Number(appId));
+
+		setIsInstalled(alreadyInstalled);
+	}, [appId]);
 	return (
 		<div>
 			<div className='flex items-center gap-10 mt-20'>
@@ -31,7 +45,7 @@ const AppDetails = () => {
 						<p>{description}</p>
 					</div>
 
-					<p>{companyName}</p>
+					<p>Developed by <span className='bg-gradient-to-br from-purple-700 via-purple-600 to-purple-500 bg-clip-text text-transparent'>{companyName}</span></p>
 					<div className='border-t-2 border-gray-100'></div>
 					<div className='flex items-center gap-10'>
 						<div className=""><img className='w-10' src={di} alt="" />Downloads <br /> <span className='text-2xl font-bold'>{downloads}</span></div>
@@ -39,7 +53,15 @@ const AppDetails = () => {
 						<div className=""><img className='w-10' src={revi} alt="" />Reviews <br /> <span className='text-2xl font-bold'>{reviews}</span></div>
 
 					</div>
-					<button onClick={() => handleInstall(id)} className="btn btn-success">Install Now ({size} MB)</button>
+					<button
+						onClick={() => handleInstall(id)}
+						disabled={isInstalled}
+						style={{backgroundImage: `linear-gradient(to bottom right, #22C55E, #16A34A, #047857)`}}
+						className={`btn ${isInstalled ? 'btn-disabled' : 'btn-success'} text-white`}
+
+					>
+						{isInstalled ? 'Installed' : `Install Now (${size} MB)`}
+					</button>
 				</div>
 			</div>
 			<div className='border-t-2 border-gray-100 mt-4'></div>
@@ -72,6 +94,7 @@ const AppDetails = () => {
 			<div className='mt-10'>
 				<h3><span className='font-bold'>Description</span> <br />{description}</h3>
 			</div>
+			<ToastContainer></ToastContainer>
 		</div>
 	);
 };

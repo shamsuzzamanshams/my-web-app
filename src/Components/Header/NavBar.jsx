@@ -6,7 +6,12 @@ import { FaGithub } from "react-icons/fa6";
 const NavBar = () => {
 
 	const linkClass = ({ isActive }) =>
-		isActive ? 'm-2 text-primary font-bold' : 'm-2';
+		`m-2 font-semibold ${isActive
+			? 'text-purple-600'
+			: 'bg-gradient-to-br from-purple-700 via-purple-600 to-purple-500 bg-clip-text'
+		}`;
+
+		//
 
 	const links = <>
 		<NavLink to="/" className={linkClass}>
@@ -40,7 +45,7 @@ const NavBar = () => {
 				<Link to="/">
 					<div className='flex items-center'>
 						<img className='w-8' src={logo} alt="logo" />
-						<span className="btn btn-ghost text-xl">My Web Application</span>
+						<span className="btn btn-ghost text-xl bg-gradient-to-br from-purple-700 via-purple-600 to-purple-500 bg-clip-text text-transparent">My Web Application</span>
 					</div>
 				</Link>
 			</div>
@@ -56,7 +61,8 @@ const NavBar = () => {
 					href="https://github.com/"
 					target="_blank"
 					rel="noopener noreferrer"
-					className="flex items-center gap-1.5 btn"
+					className="flex items-center gap-1.5 btn text-white"
+					style={{backgroundImage: `linear-gradient(to bottom right, #6D28D9, #7C3AED, #9333EA)`}}
 				>
 					<FaGithub />
 					Contribution

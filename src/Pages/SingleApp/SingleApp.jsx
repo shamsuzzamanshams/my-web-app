@@ -10,7 +10,7 @@ const SingleApp = ({ singleapp }) => {
 
 	return (
 		<Link className='mt-auto' to={`/appDetails/${id}`}>
-			<div className="card bg-base-100 w-full lg:w-[290px] shadow-sm">
+			<div className="card bg-base-100 w-full lg:w-[290px] h-[350px] shadow-sm">
 				<figure className=''>
 					<img
 						className='h-[166px]'
@@ -23,8 +23,8 @@ const SingleApp = ({ singleapp }) => {
 						<p>{description}</p>
 					</div>
 					<div className="card-actions justify-between mt-auto">
-						<div className="badge badge-outline"><img className='w-4' src={di} alt="" /> {downloads}</div>
-						<div className="badge badge-outline"> <img className='w-4' src={ri} alt="rating" />{ratingAvg}</div>
+						<div className="badge badge-outline bg-amber-50"><img className='w-4' src={di} alt="" /> <span className='bg-gradient-to-br from-green-500 via-green-600 to-green-700 bg-clip-text text-transparent'>{downloads}</span></div>
+						<div className="badge badge-outline bg-amber-50"> <img className='w-4' src={ri} alt="rating" /><span className='text-orange-400'>{ratingAvg}</span></div>
 					</div>
 				</div>
 			</div>

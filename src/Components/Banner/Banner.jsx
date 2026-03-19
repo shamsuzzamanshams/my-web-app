@@ -7,7 +7,7 @@ import hero from '../../assets/hero.png'
 const Banner = () => {
 	return (
 		<div className='text-center mt-20'>
-			<h3 className='text-6xl font-bold mb-4'>We Build <br /> <span className='text-blue-700'>Productive</span> Apps</h3>
+			<h3 className='text-6xl font-bold mb-4'>We Build <br /> <span className='bg-gradient-to-br from-purple-700 via-purple-600 to-purple-500 bg-clip-text text-transparent'>Productive</span> Apps</h3>
 			<p>At HERO.IO, we craft innovative apps designed to make everyday life simpler, smarter, and more exciting.
 				<br />Our goal is to turn your ideas into digital experiences that truly make an impact.
 			</p>
@@ -31,7 +31,7 @@ const Banner = () => {
 			<div className='mx-28 mt-10'>
 				<img src={hero} alt="hero" />
 			</div>
-			<div className='border bg-blue-700'>
+			<div className='border' style={{backgroundImage: `linear-gradient(to bottom right, #6D28D9, #7C3AED, #9333EA)`}}>
 				<div className='text-2xl font-bold text-white mt-14 mb-10'>
 					<h3>Trusted by Millions, Built for You</h3>
 				</div>
