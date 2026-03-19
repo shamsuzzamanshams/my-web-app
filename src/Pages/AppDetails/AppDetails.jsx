@@ -3,7 +3,8 @@ import { useLoaderData, useParams } from 'react-router';
 import ri from '../../assets/icon-ratings.png'
 import di from '../../assets/icon-downloads.png'
 import revi from '../../assets/icon-review.png'
-import { Area, Bar, CartesianGrid, ComposedChart, Legend, Line, Tooltip, XAxis, YAxis } from 'recharts';
+import { Bar, CartesianGrid, ComposedChart, Legend, Tooltip, XAxis, YAxis } from 'recharts';
+import { addToStoreDb } from '../../Utility/dataBase';
 
 
 
@@ -12,10 +13,12 @@ const AppDetails = () => {
 	const appId = parseInt(id);
 	const data = useLoaderData();
 	const SingleApp = data.find(app => app.id === appId)
-	console.log(SingleApp);
+	// console.log(SingleApp);
 
 	const { image, title, description, companyName, downloads, ratingAvg, reviews, size, ratings } = SingleApp;
-
+	const handleInstall = id => {
+		addToStoreDb(id);
+	}
 	return (
 		<div>
 			<div className='flex items-center gap-10 mt-20'>
@@ -36,7 +39,7 @@ const AppDetails = () => {
 						<div className=""><img className='w-10' src={revi} alt="" />Reviews <br /> <span className='text-2xl font-bold'>{reviews}</span></div>
 
 					</div>
-					<button className="btn btn-success">Install Now ({size} MB)</button>
+					<button onClick={() => handleInstall(id)} className="btn btn-success">Install Now ({size} MB)</button>
 				</div>
 			</div>
 			<div className='border-t-2 border-gray-100 mt-4'></div>
