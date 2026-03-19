@@ -21,7 +21,7 @@ const App = () => {
 			</div>
 
 			<div className='flex items-center justify-between mt-10'>
-				<h3 className='font-bold'>({data.length}) Apps Found</h3>
+				<h3 className='font-bold'>({search ? filterdata.length : data.length}) Apps Found</h3>
 				<div className='relative'>
 					<CiSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-xl text-gray-500" />
 					<input
