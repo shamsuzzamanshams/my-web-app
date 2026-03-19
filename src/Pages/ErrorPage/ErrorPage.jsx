@@ -15,6 +15,7 @@ const ErrorPage = () => {
 				<h3 className='text-4xl font-bold mb-4'>Oops, page not found!</h3>
 				<p>The page you are looking for is not available.</p>
 				<button
+					style={{backgroundImage: `linear-gradient(to bottom right, #6D28D9, #7C3AED, #9333EA)`}}
 					onClick={() => navigate('/')}
 					className='btn btn-primary mt-6'
 				>

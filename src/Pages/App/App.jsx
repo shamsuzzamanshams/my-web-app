@@ -46,7 +46,8 @@ const App = () => {
 					</p>
 					<button
 						onClick={() => setSearch('')}
-						className='btn mt-4'
+						className='btn mt-4 text-white'
+						style={{backgroundImage: `linear-gradient(to bottom right, #6D28D9, #7C3AED, #9333EA)`}}
 					>
 						Clear Search
 					</button>
