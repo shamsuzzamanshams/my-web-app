@@ -189,8 +189,8 @@
 
 ## 🔗 Submission Guideline
 
-- **Live Link :** YOUR_DEPLOYED_URL_HERE
-- **GitHub Repository:** YOUR_REPO_URL_HERE
+- **Live Link :** my-web-application-230830200005.surge.sh
+- **GitHub Repository:** https://github.com/shamsuzzamanshams/my-web-app
 
 
 ### 📅 Deadline For 60 marks: 26 March , 2026 (11:59 pm ⏱️)

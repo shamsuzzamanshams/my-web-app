@@ -46,7 +46,7 @@ const Installation = () => {
 				<p>Explore All Trending Apps on the Market developed by us</p>
 			</div>
 
-			<div className='flex justify-between items-center mt-10'>
+			<div className='flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mt-10 px-4'>
 				<h3 className='font-bold'>({installedAppList.length}) Apps Found</h3>
 				<details className="dropdown">
 					<summary className="btn m-1">Sort By: {sort ? sort : ""}</summary>
