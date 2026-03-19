@@ -10,10 +10,10 @@ const SingleApp = ({ singleapp }) => {
 
 	return (
 		<Link className='mt-auto' to={`/appDetails/${id}`}>
-			<div className="card bg-base-100 w-full lg:w-[290px] h-[350px] shadow-sm">
+			<div className="card bg-base-100 w-full items-center lg:w-[290px] h-[290px] shadow-sm">
 				<figure className=''>
 					<img
-						className='h-[166px]'
+						className='h-[150px] border-gray-100'
 						src={image}
 						alt="Picture" />
 				</figure>

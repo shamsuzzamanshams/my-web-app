@@ -35,7 +35,7 @@ const AppDetails = () => {
 	}, [appId]);
 	return (
 		<div>
-			<div className='flex items-center gap-10 mt-20'>
+			<div className='flex flex-col lg:flex-row items-center lg:items-start gap-10 mt-20'>
 				<div>
 					<img className='h-48' src={image} alt="image" />
 				</div>
@@ -60,7 +60,7 @@ const AppDetails = () => {
 						className={`btn ${isInstalled ? 'btn-disabled' : 'btn-success'} text-white`}
 
 					>
-						{isInstalled ? 'Installed' : `Install Now (${size} MB)`}
+						{isInstalled ? 'You Are Already Installed' : `Install Now (${size} MB)`}
 					</button>
 				</div>
 			</div>
